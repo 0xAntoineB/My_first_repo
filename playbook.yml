@@ -15,6 +15,7 @@
         domain_server: "{{ ad_domain_controller }}"
         groups:
           - "Users"  
+      become: no
 
       vars:
         ad_username: "Allan Foirey"  
