@@ -1,6 +1,5 @@
 ---
 
----
 - name: Créer un utilisateur sur Windows
   hosts: windows
   gather_facts: no
