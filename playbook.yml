@@ -1,26 +1,21 @@
 ---
 
-- name: Créer un utilisateur Active Directory
-  hosts: windows_servers  
+- name: AD-usze
+  hosts: windows
   gather_facts: no
-
   tasks:
-    - name: Ajouter un utilisateur à Active Directory
+    - name: NEw user
       win_domain_user:
-        name: "{{ ad_username }}"
-        password: "{{ ad_user_password }}"
+        name: "GLyonremi"
+        firstname: "remi"
+        surname: "dupont"
+        password: "Jsa100pc@"
         state: present
-        domain_username: "{{ ad_admin_username }}"
-        domain_password: "{{ ad_admin_password }}"
-        domain_server: "{{ ad_domain_controller }}"
+        path: "OU=Users,DC=ansible,DC=awx" 
         groups:
-          - "Users"  
-      become: no
-
-      vars:
-        ad_username: "Allan Foirey"  
-        ad_user_password: "CunTest1205@"  
-        ad_admin_username: "Administrateur"  
-        ad_admin_password: "Jsa100pc@"  
-        ad_domain_controller: "10.0.2.50"  
+          - "AWX_Required_GROUP"
+        upn: "rduminy@grandlyon.com"
+        must_change_password: no
+        password_never_expires: yes
+      delegate_to: localhost
 
