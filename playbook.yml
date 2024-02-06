@@ -14,7 +14,6 @@
         path: "OU=Users,DC=ansible,DC=awx" 
         groups:
           - "AWX_Required_GROUP"
-        upn: "rduminy@grandlyon.com"
         must_change_password: no
         password_never_expires: yes
       
