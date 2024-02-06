@@ -1,20 +1,19 @@
 ---
 
-- name: AD-usze
-  hosts: windows_servers
+- name: Test Connectivity and Gather Facts on Windows Host
+  hosts: windows
   gather_facts: no
-  tasks:
-    - name: NEw user
-      win_domain_user:
-        name: "GLyonremi"
-        firstname: "remi"
-        surname: "dupont"
-        password: "Jsa100pc@"
-        state: present
-        path: "OU=Users,DC=ansible,DC=awx" 
-        groups:
-          - "AWX_Required_GROUP"
-        must_change_password: no
-        password_never_expires: yes
-      
 
+  tasks:
+  - name: Test WinRM Connectivity
+    win_ping:
+
+  - name: Gather Windows Facts
+    setup:
+
+  - name: Display Some Windows Facts
+    debug:
+      msg:
+      - "Operating System: {{ ansible_os_name }}"
+      - "Total RAM: {{ ansible_memtotal_mb }} MB"
+      - "Processor: {{ ansible_processor[0] }}"
