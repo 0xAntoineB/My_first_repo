@@ -1,7 +1,7 @@
 ---
 
 - name: AD-usze
-  hosts: windows_server
+  hosts: windows_servers
   gather_facts: no
   tasks:
     - name: NEw user
