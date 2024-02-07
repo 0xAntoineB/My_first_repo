@@ -6,7 +6,7 @@
   tasks:
     - name: Créer un utilisateur
       win_user:
-        name: Allan Culley
+        name: Allan Fe
         password: MotDePasse@123
         state: present
       become: yes
