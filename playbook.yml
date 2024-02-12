@@ -1,15 +1,22 @@
 ---
-
-- name: Créer un utilisateur sur Windows
+- name: Créer un utilisateur et l'ajouter à un groupe sur Windows
   hosts: windows
   gather_facts: no
   tasks:
-    - name: Créer un utilisateur
+    - name: Créer l'utilisateur
       win_user:
-        name: Allan Fe
-        password: MotDePasse@123
+        name: awxtp
+        password: Jsa100pc@
         state: present
       become: yes
       become_user: "{{ ansible_user }}"
       become_method: runas
 
+    - name: Ajouter l'utilisateur au groupe
+      win_group_membership:
+        name: AWX_Required_Group
+        members: awxtp
+        state: present
+      become: yes
+      become_user: "{{ ansible_user }}"
+      become_method: runas
