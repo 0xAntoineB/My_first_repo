@@ -12,11 +12,3 @@
       become_user: "{{ ansible_user }}"
       become_method: runas
 
-    - name: Ajouter l'utilisateur au groupe
-      win_group_membership:
-        name: AWX_Required_Group
-        members: Allan Foirey
-        state: present
-      become: yes
-      become_user: "{{ ansible_user }}"
-      become_method: runas
