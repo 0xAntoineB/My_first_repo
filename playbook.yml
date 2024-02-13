@@ -20,6 +20,4 @@
         members:
           - awxbind1  # Envisagez d'utiliser le DN complet si nécessaire
         state: present
-      become: yes
-      become_user: Administrator
       become_method: runas
