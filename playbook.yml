@@ -4,7 +4,7 @@
   tasks:
     - name: Créer l'utilisateur
       win_user:
-        name: awxbind2
+        name: awxbind3
         password: Jsa100pc@
         state: present
       become_method: runas
@@ -18,6 +18,6 @@
       win_group_membership:
         name: AWX_Required_Group
         members:
-          - awxbind1  # Envisagez d'utiliser le DN complet si nécessaire
+          - awxbind3  # Envisagez d'utiliser le DN complet si nécessaire
         state: present
       become_method: runas
