@@ -1,23 +1,17 @@
-- name: Créer un utilisateur et l'ajouter à un groupe sur Windows
+- name: Créer un utilisateur et l'ajouter à un groupe sur Windows avec PowerShell
   hosts: windows
   gather_facts: no
   tasks:
-    - name: Créer l'utilisateur
-      win_user:
-        name: awxbind3
-        password: Jsa100pc@
-        state: present
+    - name: Créer l'utilisateur avec PowerShell
+      win_shell: |
+        $password = ConvertTo-SecureString "Jsa100pc@" -AsPlainText -Force
+        New-ADUser -Name "awxbind5" -AccountPassword $password -Enabled $true -PasswordNeverExpires $false -CannotChangePassword $false
+      become: yes
       become_method: runas
 
-    # Introduire une pause pour permettre la propagation dans AD
-    - name: Attendre la propagation de l'utilisateur
-      pause:
-        seconds: 10  # Ajustez ce délai selon votre environnement
-
-    - name: Ajouter l'utilisateur au groupe
-      win_group_membership:
-        name: AWX_Required_Group
-        members:
-          - awxbind3  # Envisagez d'utiliser le DN complet si nécessaire
-        state: present
+    - name: Ajouter l'utilisateur au groupe avec PowerShell
+      win_shell: |
+        $groupName = "AWX_Required_Group"
+        Add-ADGroupMember -Identity $groupName -Members "awxbind5"
+      become: yes
       become_method: runas
