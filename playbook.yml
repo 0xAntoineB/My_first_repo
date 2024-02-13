@@ -1,14 +1,27 @@
----
 - name: Créer un utilisateur et l'ajouter à un groupe sur Windows
   hosts: windows
   gather_facts: no
   tasks:
     - name: Créer l'utilisateur
       win_user:
-        name: Allan Foirey
+        name: awxbind1
         password: Jsa100pc@
         state: present
       become: yes
-      become_user: "{{ ansible_user }}"
+      become_user: Administrator
       become_method: runas
 
+    # Introduire une pause pour permettre la propagation dans AD
+    - name: Attendre la propagation de l'utilisateur
+      pause:
+        seconds: 10  # Ajustez ce délai selon votre environnement
+
+    - name: Ajouter l'utilisateur au groupe
+      win_group_membership:
+        name: AWX_Required_Group
+        members:
+          - awxbind1  # Envisagez d'utiliser le DN complet si nécessaire
+        state: present
+      become: yes
+      become_user: Administrator
+      become_method: runas
