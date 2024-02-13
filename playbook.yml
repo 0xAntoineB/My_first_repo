@@ -4,7 +4,7 @@
   tasks:
     - name: Créer l'utilisateur
       win_user:
-        name: awxbind1
+        name: awxbind2
         password: Jsa100pc@
         state: present
       become_method: runas
