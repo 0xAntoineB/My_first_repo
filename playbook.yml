@@ -7,8 +7,6 @@
         name: awxbind1
         password: Jsa100pc@
         state: present
-      become: yes
-      become_user: Administrator
       become_method: runas
 
     # Introduire une pause pour permettre la propagation dans AD
