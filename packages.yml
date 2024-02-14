@@ -1,0 +1,22 @@
+---
+- name: MAJ Update OS
+  hosts: vm_node   #(ou mettre son titre de groupe présent dans le fichier inventaire.ini)
+  become: yes
+  tasks:
+    - name: MAJ paquet-list
+      apt:
+        update_cache: yes
+
+    - name: MAJ Upgrade paquet
+      apt:
+        upgrade: dist
+
+    - name: Installation de Python
+      apt:
+        name: python
+        state: present
+
+    - name: Installation de NGINX
+      apt:
+        name: nginx
+        state: present
