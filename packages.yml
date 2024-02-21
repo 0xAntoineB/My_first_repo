@@ -11,12 +11,4 @@
       apt:
         upgrade: dist
 
-    - name: Installation de Python
-      apt:
-        name: python
-        state: present
 
-    - name: Installation de NGINX
-      apt:
-        name: nginx
-        state: present
