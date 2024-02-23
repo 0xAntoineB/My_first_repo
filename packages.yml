@@ -1,6 +1,6 @@
 ---
 - name: MAJ Update OS
-  hosts: linux   #(ou mettre son titre de groupe présent dans le fichier inventaire.ini)
+  hosts: linux   
   become: yes
   tasks:
     - name: MAJ paquet-list
