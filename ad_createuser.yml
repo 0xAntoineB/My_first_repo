@@ -5,11 +5,11 @@
     - name: Créer l'utilisateur avec PowerShell
       win_shell: |
         $password = ConvertTo-SecureString "Jsa100pc@" -AsPlainText -Force
-        New-ADUser -Name "awxbind9" -AccountPassword $password -Enabled $true -PasswordNeverExpires $false -CannotChangePassword $false
+        New-ADUser -Name "awxbind10" -AccountPassword $password -Enabled $true -PasswordNeverExpires $false -CannotChangePassword $false
       become_method: runas
 
     - name: Ajouter l'utilisateur au groupe avec PowerShell
       win_shell: |
         $groupName = "AWX_Required_Group"
-        Add-ADGroupMember -Identity $groupName -Members "awxbind9"
+        Add-ADGroupMember -Identity $groupName -Members "awxbind10"
       become_method: runas
